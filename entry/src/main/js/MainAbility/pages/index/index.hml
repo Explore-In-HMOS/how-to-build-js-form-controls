@@ -1,0 +1,64 @@
+<div class="container">
+  <scroll class="scroll-container">
+    <div class="form-body">
+
+      <text class="title">WORKOUT LOG</text>
+
+      <div class="rating-container">
+        <block for="{{ (index, item) in stars }}">
+          <text
+                  class="star {{ index < ratingVal ? 'star-active' : 'star-inactive' }}"
+                  onclick="onRatingSelect(index)">★</text>
+        </block>
+      </div>
+
+      <input
+              class="input-search"
+              type="text"
+              placeholder="Search drill..."
+              value="{{ searchQuery }}"
+              onchange="onSearchChange">
+      </input>
+
+      <select class="select-box" onchange="onTypeSelect">
+        <option
+                for="{{ availableTypes }}"
+                value="{{ $item }}"
+                selected="{{ $item === selectedType }}">
+          {{ $item }}
+        </option>
+      </select>
+
+      <div class="picker-container">
+        <text class="label">Select Time</text>
+        <picker
+                class="time-picker"
+                type="time"
+                value="{{ selectedTime }}"
+                hours="24"
+                onchange="onTimeChange">
+        </picker>
+      </div>
+
+      <div class="textarea-container">
+        <text class="label">Notes</text>
+        <textarea
+                class="input-textarea"
+                placeholder="Add performance notes..."
+                maxlength="150"
+                onchange="onNotesChange">{{ notesVal }}</textarea>
+      </div>
+
+      <div class="toggle-container">
+        <text class="toggle-label">Share GPS Track</text>
+        <switch class="toggle-switch" checked="{{ shareGps }}" onchange="onGpsToggle"></switch>
+      </div>
+
+      <div class="button-group">
+        <button class="btn btn-reset" type="capsule" onclick="resetForm">Reset</button>
+        <button class="btn btn-submit" type="capsule" onclick="submitForm">Submit</button>
+      </div>
+
+    </div>
+  </scroll>
+</div>
